@@ -45,15 +45,27 @@ def get_turn_score():
         if roll_score == 0:
             turn_score = 0
             break
-        else:
-            turn_score += roll_score
-            if player_wants_to_exit():
-                break
+        turn_score += roll_score
+        if player_wants_to_exit():
+            break
     return turn_score
 
 
 def player_wants_to_exit():
-    return True
+    should_exit = True
+    while True:
+        player_choice = input("Do you want to continue? Y/N ")
+        if player_choice == "Y" or player_choice == "y":
+            should_exit = False
+            break
+        elif player_choice == "N" or player_choice == "n":
+            should_exit = True
+            break
+        else:
+            print(
+                "That's not a valid option. Only 'Y' or 'N' are valid options. Please try again."
+            )
+    return should_exit
 
 
 def get_roll_score(pig1_roll, pig2_roll):

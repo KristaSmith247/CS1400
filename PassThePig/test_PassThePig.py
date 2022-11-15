@@ -88,12 +88,3 @@ def test_get_roll_score():
             PassThePig.get_roll_score(value_to_check[0][0], value_to_check[0][1])
             == value_to_check[1]
         )
-
-
-def test_pass_the_pig():
-    for x in range(1000):
-        (player1_score, player2_score, winner_string) = PassThePig.pass_the_pig()
-        if player1_score > player2_score:
-            assert winner_string == "player 1 wins"
-        else:
-            assert winner_string == "player 2 wins"
