@@ -35,6 +35,27 @@ def get_single_pig_score(pig_roll):
     return roll_score
 
 
+def get_turn_score():
+    """Execute a single player's turn."""
+    while True:
+        pig1_roll = GetRoll()
+        pig2_roll = GetRoll()
+        turn_score = 0
+        roll_score = get_roll_score(pig1_roll, pig2_roll)
+        if roll_score == 0:
+            turn_score = 0
+            break
+        else:
+            turn_score += roll_score
+            if player_wants_to_exit():
+                break
+    return turn_score
+
+
+def player_wants_to_exit():
+    return True
+
+
 def get_roll_score(pig1_roll, pig2_roll):
     roll_score = 0
     pig1_on_side = is_pig_on_side(pig1_roll)
@@ -70,14 +91,10 @@ def pass_the_pig():
     player1_score = 0
     player2_score = 0
     while player1_score < 100 and player2_score < 100:
-        pig1_roll = GetRoll()
-        pig2_roll = GetRoll()
-        player1_score += get_roll_score(pig1_roll, pig2_roll)
+        player1_score += get_turn_score()
         # for when player 1 hasn't gotten 100 points
         if player1_score < 100:
-            pig1_roll = GetRoll()
-            pig2_roll = GetRoll()
-            player2_score += get_roll_score(pig1_roll, pig2_roll)
+            player2_score += get_turn_score()
     winner_string = ""
     print("final scores = ", player1_score, player2_score)
     if player1_score >= 100:
