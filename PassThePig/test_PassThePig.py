@@ -95,7 +95,5 @@ def test_pass_the_pig():
         (player1_score, player2_score, winner_string) = PassThePig.pass_the_pig()
         if player1_score > player2_score:
             assert winner_string == "player 1 wins"
-        elif player1_score < player2_score:
-            assert winner_string == "player 2 wins"
         else:
-            pytest.fail("2 scores should never be the same")
+            assert winner_string == "player 2 wins"

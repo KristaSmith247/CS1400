@@ -75,6 +75,8 @@ def pass_the_pig():
         player1_score += get_roll_score(pig1_roll, pig2_roll)
         # for when player 1 hasn't gotten 100 points
         if player1_score < 100:
+            pig1_roll = GetRoll()
+            pig2_roll = GetRoll()
             player2_score += get_roll_score(pig1_roll, pig2_roll)
     winner_string = ""
     print("final scores = ", player1_score, player2_score)
