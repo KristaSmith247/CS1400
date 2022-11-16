@@ -37,7 +37,7 @@ def get_single_pig_score(pig_roll):
 
 def get_turn_score(player, current_score):
     """Execute a single player's turn."""
-    print(player, "starts with", current_score)
+    print("\n%s's turn starts with %d\n" % (player, current_score))
     turn_score = 0
     while True:
         pig1_roll = GetRoll()
@@ -49,6 +49,7 @@ def get_turn_score(player, current_score):
         turn_score += roll_score
         if turn_score + current_score >= 100:
             break
+        print("Your score for this turn is", turn_score)
         if player_wants_to_exit():
             break
     return turn_score
@@ -57,7 +58,7 @@ def get_turn_score(player, current_score):
 def player_wants_to_exit():
     should_exit = True
     while True:
-        player_choice = input("Do you want to continue? Y/N ")
+        player_choice = input("\nDo you want to continue? Y/N ")
         if player_choice == "Y" or player_choice == "y":
             should_exit = False
             break
@@ -67,6 +68,7 @@ def player_wants_to_exit():
         print(
             "That's not a valid option. Only 'Y' or 'N' are valid options. Please try again."
         )
+    print()
     return should_exit
 
 
@@ -97,7 +99,7 @@ def get_roll_score(pig1_roll, pig2_roll):
             roll_score = get_single_pig_score(pig1_roll) + get_single_pig_score(
                 pig2_roll
             )
-    print("Roll score: ", roll_score, pig1_roll, pig2_roll)
+    print("You got", pig1_roll, "and", pig2_roll, "and it scored", roll_score)
     return roll_score
 
 
